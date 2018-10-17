@@ -1,3 +1,2 @@
 # JE-Game
-# We are coding a game for fun... !!
-# Im just testing somethings to see if i can edit this text. 
+# We are College Francois de Laval's students and coding a video game for fun ! :)
