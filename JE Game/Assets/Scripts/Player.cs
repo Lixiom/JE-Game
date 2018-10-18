@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     GameObject player;
-    float speed = 0.1f;
+    float speed = 0.3f;
     Rigidbody2D rb;
 
 	// Use this for initialization
@@ -16,21 +16,10 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.W))
+        player.transform.Translate(new Vector3(Input.GetAxis("Horizontal"), 0, 0) * speed);
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            player.transform.Translate(player.transform.up * speed);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            player.transform.Translate(player.transform.right * speed);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            player.transform.Translate(-player.transform.right * speed);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            player.transform.Translate(-player.transform.up * speed);
+            rb.velocity = new Vector2(0, 10);
         }
     }
 }
