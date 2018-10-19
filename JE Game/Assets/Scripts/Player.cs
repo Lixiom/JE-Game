@@ -40,7 +40,6 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             rb.velocity = new Vector2(0, 10);
-            animator.SetBool("isJumping", true);
             isJumping = true;
         }
     }
@@ -48,5 +47,9 @@ public class Player : MonoBehaviour {
     {
         animator.SetBool("isJumping", false);
         isJumping = false;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        animator.SetBool("isJumping", true);
     }
 }
