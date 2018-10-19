@@ -4,52 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    GameObject player;
-    float speed = 10f;
-    Rigidbody2D rb;
-    Animator animator;
-    bool isJumping;
+
 
 	// Use this for initialization
 	void Start () {
-        player = this.gameObject;
-        rb = player.GetComponent<Rigidbody2D>();
-        animator = player.GetComponent<Animator>();
-    }
-	
+    
 	// Update is called once per frame
-	void Update () {
 
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        void OnTriggerEnter2D(Collider2D other)
         {
-            if (Input.GetKey(KeyCode.A))
+            if (other.gameObject.CompareTag("Sword"))
             {
-                player.transform.localScale = new Vector3(-1, 1, 1);
+                other.gameObject.SetActive(false);
+                haveSword = true;
             }
-            if (Input.GetKey(KeyCode.D))
-            {
-                player.transform.localScale = new Vector3(1, 1, 1);
-            }
-            animator.SetBool("isRunning", true);
-            player.transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0) * speed * Time.deltaTime);
         }
-        else if (animator.GetBool("isRunning"))
-        {
-            animator.SetBool("isRunning", false);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
-        {
-            rb.velocity = new Vector2(0, 10);
-            isJumping = true;
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        animator.SetBool("isJumping", false);
-        isJumping = false;
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        animator.SetBool("isJumping", true);
-    }
-}
+
