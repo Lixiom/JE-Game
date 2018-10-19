@@ -300,8 +300,8 @@ GameObject:
   - component: {fileID: 1632213464}
   - component: {fileID: 1632213467}
   - component: {fileID: 1632213469}
-  - component: {fileID: 1632213468}
   - component: {fileID: 1632213470}
+  - component: {fileID: 1632213468}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -398,8 +398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7633b36abe952054dad75e869cbf5511, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1632213468
-BoxCollider2D:
+--- !u!58 &1632213468
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -410,19 +410,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 2.56}
-    newSize: {x: 5.12, y: 2.56}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -0.6}
   serializedVersion: 2
-  m_Size: {x: 1.21, y: 1.97}
-  m_EdgeRadius: 0
+  m_Radius: 0.34840298
 --- !u!50 &1632213469
 Rigidbody2D:
   serializedVersion: 4
@@ -458,5 +448,5 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: -1}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.75, y: 0}
-  - {x: 0.45, y: 0}
+  - {x: -0.3, y: 0}
+  - {x: 0.2, y: 0}
