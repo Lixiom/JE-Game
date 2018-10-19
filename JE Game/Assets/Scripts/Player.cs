@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     float speed = 10f;
     Rigidbody2D rb;
     Animator animator;
+    bool isJumping;
 
 	// Use this for initialization
 	void Start () {
@@ -36,14 +37,16 @@ public class Player : MonoBehaviour {
         {
             animator.SetBool("isRunning", false);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             rb.velocity = new Vector2(0, 10);
-            animator.SetBool("isJumping", true);  
+            animator.SetBool("isJumping", true);
+            isJumping = true;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         animator.SetBool("isJumping", false);
+        isJumping = false;
     }
 }
