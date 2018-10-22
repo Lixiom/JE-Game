@@ -39,7 +39,7 @@ public class Player : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
-            rb.velocity = new Vector2(0, 10);
+            rb.velocity = new Vector2(0,15);
             isJumping = true;
         }
     }
