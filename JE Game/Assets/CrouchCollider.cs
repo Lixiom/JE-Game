@@ -21,6 +21,9 @@ public class CrouchCollider : MonoBehaviour {
             //Output to console whether the Collider is on or not
             Debug.Log("Collider.enabled = " + m_Collider.enabled);
         }
-
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            m_Collider.enabled = !m_Collider.enabled;
+        }
     }
 }
