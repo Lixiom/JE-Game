@@ -5,17 +5,15 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     GameObject player;
-    float speed = 10f;
+    float speed = 5f;
     Rigidbody2D rb;
-    Animator animator;
-    bool isJumping;
+    bool isJumping = false;
     KeyCode W, A, S, D;
 
 	// Use this for initialization
 	void Start () {
         player = this.gameObject;
         rb = player.GetComponent<Rigidbody2D>();
-        animator = player.GetComponent<Animator>();
         if(player.name == "Player0")
         {
             W = KeyCode.W;
@@ -40,18 +38,18 @@ public class Player : MonoBehaviour {
             if (Input.GetKey(A))
             {
                 player.transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-                rb.velocity = new Vector2(-3, rb.velocity.y);
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
             }
-            if (Input.GetKey(D))
+            else if (Input.GetKey(D))
             {
                 player.transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
-                rb.velocity = new Vector2(3, rb.velocity.y);
+                rb.velocity = new Vector2(speed, rb.velocity.y);
             }
-            animator.SetBool("isRunning", true);
-        }
-        else if (animator.GetBool("isRunning"))
-        {
-            animator.SetBool("isRunning", false);
+            else
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+
         }
         if (Input.GetKeyDown(W) && !isJumping)
         {
@@ -61,11 +59,6 @@ public class Player : MonoBehaviour {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        animator.SetBool("isJumping", false);
         isJumping = false;
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        animator.SetBool("isJumping", true);
     }
 }
