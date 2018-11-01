@@ -9,37 +9,53 @@ public class Player : MonoBehaviour {
     Rigidbody2D rb;
     Animator animator;
     bool isJumping;
+    KeyCode W, A, S, D;
 
 	// Use this for initialization
 	void Start () {
         player = this.gameObject;
         rb = player.GetComponent<Rigidbody2D>();
         animator = player.GetComponent<Animator>();
+        if(player.name == "Player0")
+        {
+            W = KeyCode.W;
+            A = KeyCode.A;
+            S = KeyCode.S;
+            D = KeyCode.D;
+        }
+        else
+        {
+            W = KeyCode.UpArrow;
+            A = KeyCode.LeftArrow;
+            S = KeyCode.DownArrow;
+            D = KeyCode.RightArrow;
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if(Input.GetKey(A) || Input.GetKey(D))
         {
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(A))
             {
-                player.transform.localScale = new Vector3(-1, 1, 1);
+                player.transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+                rb.velocity = new Vector2(-3, rb.velocity.y);
             }
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(D))
             {
-                player.transform.localScale = new Vector3(1, 1, 1);
+                player.transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+                rb.velocity = new Vector2(3, rb.velocity.y);
             }
             animator.SetBool("isRunning", true);
-            player.transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0) * speed * Time.deltaTime);
         }
         else if (animator.GetBool("isRunning"))
         {
             animator.SetBool("isRunning", false);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        if (Input.GetKeyDown(W) && !isJumping)
         {
-            rb.velocity = new Vector2(0,15);
+            rb.velocity = new Vector2(rb.velocity.x,15);
             isJumping = true;
         }
     }
