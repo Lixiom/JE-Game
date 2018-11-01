@@ -35,19 +35,15 @@ public class Player : MonoBehaviour {
 
         if(Input.GetKey(A) || Input.GetKey(D))
         {
-            if (Input.GetKey(A))
+            if (Input.GetKey(A) && !Input.GetKey(D))
             {
                 player.transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
                 rb.velocity = new Vector2(-speed, rb.velocity.y);
             }
-            else if (Input.GetKey(D))
+            else if (Input.GetKey(D) && !Input.GetKey(A))
             {
                 player.transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
                 rb.velocity = new Vector2(speed, rb.velocity.y);
-            }
-            else
-            {
-                rb.velocity = new Vector2(0, rb.velocity.y);
             }
 
         }
