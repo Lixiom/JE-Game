@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
     KeyCode W, A, S, D;
 
 	// Use this for initialization
-	void Start () {
+	 void Start () {
         player = this.gameObject;
         rb = player.GetComponent<Rigidbody2D>();
         if(player.name == "Player0")
@@ -56,5 +56,10 @@ public class Player : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         isJumping = false;
+    }
+
+    public void TakeDamages(float damages)
+    {
+        Debug.Log(player.transform.name + " perd " + damages + " PV");
     }
 }
